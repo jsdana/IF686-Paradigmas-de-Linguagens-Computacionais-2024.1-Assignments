@@ -53,3 +53,19 @@ maxThreeOccurs :: Int -> Int -> Int -> (Int, Int)
 maxThreeOccurs m n p = (mx, eqCount)
     where mx = maxiThree m n p
           eqCount = equalCount mx m n p
+
+
+{- Check if a given number n is Prime -}
+
+isPrime :: Int -> Bool
+isPrime n   | n <= 1 = False
+            | otherwise = not (hasDivisor n 2 (floor (sqrt (fromIntegral n))))
+-- Check if there's a divisor of n in the range [2..squareRoot of n]
+    where 
+        hasDivisor :: Int -> Int -> Int -> Bool
+        hasDivisor n divisor root   | divisor > root         = False
+                            | ((mod n divisor) == 0) = True --There's a divisor < than the root of n
+                            | otherwise              = hasDivisor n (divisor + 1) root
+        -- Recursively calls itself to check for the next potential divisor
+
+
