@@ -1,0 +1,26 @@
+Na avaliação estrita, todas as expressões são avaliadas imediatamente, ou seja, 
+todos os argumentos de uma função são avaliados antes que a função seja aplicada.
+
+-- exemplo de avaliação estrita
+add :: Int -> Int -> Int
+add x y = x + y
+
+mainStrict = do
+             let resultStrict = add (1 + 2) (3 + 4)
+             print resultStrict
+
+Usando uma avaliação estrita no exemplo acima, as expressões "1 + 2" e "3 + 4" são
+avaliados antes que a função addStrict seja chamada. Assim, a função add já recebe como argumentos
+3 e 7.
+
+
+
+Na avaliação preguiçosa, as expressõe não são avaliadas até que sejam necessárias. Isto é,
+os argumentos de uma função só serão avaliados quando forem usados no corpo da função.
+
+mainLazy = do
+           let resultLazy = add (1 + 2) (3 + 4)
+           print resultLazy
+
+Já na avaliação preguiçosa, os argumentos (1 + 2) (3 + 4) serão levados para a função add
+e só serão avaliadas forem necessários para a soma.
